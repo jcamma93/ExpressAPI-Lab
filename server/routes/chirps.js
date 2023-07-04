@@ -26,4 +26,27 @@ router.post('/', (req, res) => {
     res.sendStatus(200);
 });
 
+router.delete("/:id", (req,res) => {
+    let id = req.params.id;
+    let deletingChirp = chirpStore.GetChirp(id);
+    if (id && Object.keys(deletingChirp).length) {
+        chirpStore.DeleteChirp(id);
+        res.status(200);
+    } else {
+        res.status(404);
+    }
+});
+
+router.put("/:id", (req,res) => {
+    let id = req.params.id;
+    let newChirp = req.body;
+    let editingChirp = chirpStore.GetChirp(id);
+    if (id && Object.keys(editingChirp).length) {
+        chirpStore.UpdateChirp(id, newChirp);
+        res.status(200);
+    } else {
+        res.status(404);
+    }
+})
+
 module.exports = router;

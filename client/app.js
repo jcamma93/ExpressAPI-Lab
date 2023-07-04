@@ -11,8 +11,9 @@ document.getElementById("addChirp").addEventListener('click', async(e) => {
     const res = await fetch("/api/chirps", {
         method: 'POST',
         headers: { "Content-Type": 'application/json' },
-        body: JSON.stringify({ user: userInput.value, text: textInput.value })
+        body: JSON.stringify({ user: userInput.value, text: textInput.value }),
     });
+    getAllChirps();
 }
 );
 
@@ -23,6 +24,7 @@ async function getAllChirps() {
         const res = await fetch("/api/chirps");
         const data = await res.json();
         if (res.ok) {
+            chirpList.innerHTML = "";
             data.forEach(chirp => {
                 const p = document.createElement("p");
                 p.id = chirp.id;
