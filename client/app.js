@@ -1,10 +1,11 @@
-Swal.fire("Welcome!");
+
 
 const userInput = document.getElementById('user');
 const textInput = document.getElementById('text');
 
 document.getElementById("addChirp").addEventListener('click', async(e) => {
-    e.preventDefault()
+    e.preventDefault();
+    document.location.reload();
     // console.log(userInput.value)
     // console.log(textInput.value)
     console.log({ user: userInput.value, text: textInput.value });
